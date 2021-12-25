@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import {useNavigate} from 'react-router-dom';
 
 import { selectCartItems } from "../../redux/cart/cart.selectors";
 import CartItem from "../cart-item/cart-item.component";
@@ -8,6 +9,8 @@ import CustomButton from "../custom-button/custom-button.component";
 import './cart-dropdown.styles.scss';
 
 const CartDropdown = ({ cartItems }) => {
+    const navigate = useNavigate();
+
     return (<div className="cart-dropdown">
         <div className="cart-items">
             {cartItems.length
@@ -17,7 +20,7 @@ const CartDropdown = ({ cartItems }) => {
                 : <span className="empty-message">This cart is empty</span>
             }
         </div>
-        <CustomButton>GO TO CHECKOUT</CustomButton>
+        <CustomButton onClick={() => navigate('/checkout')}>GO TO CHECKOUT</CustomButton>
     </div>)
 };
 
